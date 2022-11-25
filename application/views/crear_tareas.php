@@ -2,26 +2,26 @@
     <section class="wrapper">
         <!-- CREAR TAREA FORM ELELEMNTS -->
         <div class="row mt">
-            <div class="col-lg-12">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="form-panel">
                     <h4 class="mb"><i class="fa fa-angle-right"></i> CREAR TAREA</h4>
                     <form class="form-horizontal style-form" action="" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Titulo de la tarea</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="titulo">
+                                <input type="text" class="form-control" name="titulo" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Descripción</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="descripcion">
+                                <input type="text" class="form-control" name="descripcion" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Fecha de finalizacion</label>
                             <div class="col-sm-10">
-                                <input type="date" class="form-control round-form" name="fecha">
+                                <input type="date" class="form-control round-form" name="fecha" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Curso</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="curso">
+                                <select class="form-control" name="curso" required>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
