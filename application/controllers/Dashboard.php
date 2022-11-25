@@ -6,7 +6,7 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		$this->loadView("home");
+		$this->loadView("home", $this->obtenerTareas());
 	}
 
 	// Cargar vista de dashboard para mostrar el inicio de lapagina 
@@ -20,7 +20,7 @@ class Dashboard extends CI_Controller
 				redirect(base_url() . "Dashboard", "location");
 			}
 
-			$this->load->view('includes/header');
+			$this->load->view('includes/header', $data);
 			$this->load->view('includes/sidebar');
 			$this->load->view($view, $data);
 			$this->load->view('includes/footer');
@@ -94,13 +94,13 @@ class Dashboard extends CI_Controller
 	public function crearTareas()
 	{
 		$this->insertarTarea();
-		$this->loadView('crear_tareas');
+		$this->loadView('crear_tareas', $this->obtenerTareas());
 	}
 
 	public function misTareas()
 	{
 		if ($_SESSION['Id']) {
-			$data['tareas'] = $this->Site_model->obtenerTarea($_SESSION['Curso']);
+			$data = $this->obtenerTareas();
 			$this->loadView('mis_tareas', $data);
 		} else {
 			redirect(base_url() . "Dashboard", "location");
@@ -109,7 +109,7 @@ class Dashboard extends CI_Controller
 
 
 	/*
-		CONTROLADOR DE DATOS DE PROFESORES
+		CONTROLADOR DE DATOS DE PROFESORES ========================================================================
 	*/
 
 	// Llamar al modelo para insertar un profesor en la base de datos
@@ -132,8 +132,15 @@ class Dashboard extends CI_Controller
 	}
 
 	/*
-		CONTROLADOR DE DATOS DE TAREAS
+		CONTROLADOR DE DATOS DE TAREAS ========================================================================
 	*/
+
+	// Llamar al modelo para que obtenga las tareas
+	public function obtenerTareas()
+	{
+		$data['tareas'] = $this->Site_model->obtenerTarea($_SESSION['Curso']);
+		return $data;
+	}
 
 	// Llamar al modelo para que inserte una tarea en la base de datos
 	public function insertarTarea()
