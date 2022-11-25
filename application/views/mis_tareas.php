@@ -5,21 +5,27 @@
         <?php
         foreach ($tareas as $tarea) {
         ?>
-            <div class="col-md-4 tarea">
-                <div class="row">
-                    <strong><?= $tarea->Titulo ?></strong>
-                </div>
-                <div class="row">
-                    <?= $tarea->Descripcion ?>
-                </div>
-                <div class="row">
-                    <?= date('d-m-Y', strtotime($tarea->FechaFinal)) ?>
-                </div>
-                <div class="row">
-                    <a href="<?= base_url() . 'uploads/' . $tarea->Archivo ?>" download="">Descargar Archivo Adjunto</a>
-                </div>
-                <div class="row">
-                    <?= $tarea->Curso ?>
+            <div class="col-lg-4 col-md-4 col-sm-4 mb">
+                <div class="white-panel pn">
+                    <div class="white-header">
+                        <h4><?= $tarea->Titulo ?></h4>
+                    </div>
+                    <div class="row" style="height: 50%;">
+                        <?= $tarea->Descripcion ?>
+                    </div>
+                    <div class="row align-items-end" style="margin-bottom: .1em;">
+                        <small>Fecha Limite:</small><?= date('d-m-Y', strtotime($tarea->FechaFinal)) ?>
+                    </div>
+                    <div class="row align-items-end">
+                        <?php if ($tarea->Archivo != "") { ?>
+                            <a class="btn btn-default" href="<?= base_url() . 'uploads/' . $tarea->Archivo ?>" download="">
+                                <i class="fa fa-download"></i>
+                                Descargar Archivo Adjunto
+                            </a>
+                        <?php } else { ?>
+                            <div>"Sin Archivo Adjunto"</div>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         <?php
