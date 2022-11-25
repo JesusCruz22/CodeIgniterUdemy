@@ -63,8 +63,11 @@ class Dashboard extends CI_Controller
 		$this->loadView('login');
 	}
 
+	// Destruir sesion actual y cargar la vista de login
 	public function logout()
 	{
+		$this->session->sess_destroy();
+		$this->loadView('login');
 	}
 
 	// Cargar la vista para gestionar alumnos
@@ -138,11 +141,11 @@ class Dashboard extends CI_Controller
 		if ($_POST) {
 			if ($_FILES['archivo']) {
 				$config['upload_path']          = './uploads/';
-				$config['allowed_types']        = 'gif|jpg|png';
+				$config['allowed_types']        = '*';
 				$config['file_name'] = uniqid() . $_FILES['archivo']['name'];
-	
+
 				$this->load->library('upload', $config);
-	
+
 				if (!$this->upload->do_upload('archivo')) {
 					echo "error";
 				} else {
@@ -151,6 +154,8 @@ class Dashboard extends CI_Controller
 			} else {
 				$this->Site_model->insertarTarea($_POST);
 			}
+
+			redirect(base_url() . "Dashboard/crearTareas", "location");
 		}
 	}
 }
