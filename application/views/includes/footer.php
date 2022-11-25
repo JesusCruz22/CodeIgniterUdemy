@@ -1,5 +1,5 @@
 <!--footer start-->
-<footer class="site-footer" style="position: static; bottom: 0;">
+<footer class="site-footer">
     <div class="text-center">
         The School - 2022
         <a href="index.html#" class="go-top">
@@ -19,24 +19,24 @@
 
 
 <!--common script for all pages-->
-<script src="assets/js/common-scripts.js"></script>
+<script src="<?= base_url() ?>assets/js/common-scripts.js"></script>
 
-<script type="text/javascript" src="assets/js/gritter/js/jquery.gritter.js"></script>
-<script type="text/javascript" src="assets/js/gritter-conf.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>assets/js/gritter/js/jquery.gritter.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>assets/js/gritter-conf.js"></script>
 
 <!--script for this page-->
-<script src="assets/js/sparkline-chart.js"></script>
-<script src="assets/js/zabuto_calendar.js"></script>
+<script src="<?= base_url() ?>assets/js/sparkline-chart.js"></script>
+<script src="<?= base_url() ?>assets/js/zabuto_calendar.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
         var unique_id = $.gritter.add({
             // (string | mandatory) the heading of the notification
-            title: 'Welcome to Dashgum!',
+            title: 'Bienvenido!',
             // (string | mandatory) the text inside the notification
-            text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo. Free version for <a href="http://blacktie.co" target="_blank" style="color:#ffd777">BlackTie.co</a>.',
+            text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo.',
             // (string | optional) the image to display on the left
-            image: 'assets/img/ui-sam.jpg',
+            image: '<?= base_url() ?>assets/img/ui-sam.jpg',
             // (bool | optional) if you want it to fade out on its own or just sit there
             sticky: true,
             // (int | optional) the time you want it to be alive for before fading out
@@ -46,6 +46,12 @@
         });
 
         return false;
+    });
+    $.extend($.gritter.options, {
+        position: 'bottom-right', // defaults to 'top-right' but can be 'bottom-left', 'bottom-right', 'top-left', 'top-right' (added in 1.7.1)
+        fade_in_speed: 'medium', // how fast notifications fade in (string or int)
+        fade_out_speed: 2000, // how fast the notices fade out
+        time: 6000 // hang on the screen for...
     });
 </script>
 
