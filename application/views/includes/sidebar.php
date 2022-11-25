@@ -28,13 +28,13 @@
                 ?>
                         <li class="sub-menu">
                             <a href="<?= base_url() ?>Dashboard/gestionAlumnos" >
-                                <i class="fa fa-tasks"></i>
+                                <i class="fa fa-list"></i>
                                 <span>Gestión de Alumnos</span>
                             </a>
                         </li>
                         <li class="sub-menu">
                             <a href="<?= base_url() ?>Dashboard/crearTareas">
-                                <i class="fa fa-desktop"></i>
+                                <i class="fa fa-plus"></i>
                                 <span>Crear Tareas</span>
                             </a>
                         </li>
@@ -44,20 +44,15 @@
 
                 <li class="sub-menu">
                     <a href="<?= base_url() ?>Dashboard/misTareas" >
-                        <i class="fa fa-cogs"></i>
+                        <i class="fa fa-book"></i>
                         <span>Mis Tareas</span>
                     </a>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" >
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-comment"></i>
                         <span>Mensajes</span>
                     </a>
-                    <ul class="sub">
-                        <li><a  href="blank.html">Blank Page</a></li>
-                        <li><a  href="login.html">Login</a></li>
-                        <li><a  href="lock_screen.html">Lock Screen</a></li>
-                    </ul>
                 </li>
               </ul>
               <!-- sidebar menu end-->
