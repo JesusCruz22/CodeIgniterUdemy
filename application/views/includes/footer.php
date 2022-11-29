@@ -28,10 +28,6 @@
 <script src="<?= base_url() ?>assets/js/sparkline-chart.js"></script>
 <script src="<?= base_url() ?>assets/js/zabuto_calendar.js"></script>
 
-<script>
-    const
-</script>
-
 <!--
 <script type="text/javascript">
     $(document).ready(function() {
@@ -59,6 +55,7 @@
         time: 3000 // hang on the screen for...
     });
 </script>
+-->
 
 <script type="application/javascript">
     $(document).ready(function() {
@@ -82,16 +79,7 @@
                 url: "show_data.php?action=1",
                 modal: true
             },
-            legend: [{
-                    type: "text",
-                    label: "Special event",
-                    badge: "00"
-                },
-                {
-                    type: "block",
-                    label: "Regular event",
-                }
-            ]
+            language: "es"
         });
     });
 
