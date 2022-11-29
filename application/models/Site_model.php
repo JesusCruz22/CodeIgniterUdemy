@@ -109,36 +109,82 @@ class Site_model extends CI_Model
         $this->db->update('alumnos', $array);
     }
 
+    /*
+        Datos de Tareas
+    */
+
     // Insertar una tarea en base de datos
     public function insertarTarea($data, $archivo = null)
     {
-        if ($archivo) {
-            $array = array(
-                "Titulo" => $data['titulo'],
-                "Descripcion" => $data['descripcion'],
-                "FechaFinal" => $data['fecha'],
-                "Archivo" => $archivo,
-                "Curso" => $data['curso']
-            );
-        } else {
-            $array = array(
-                "Titulo" => $data['titulo'],
-                "Descripcion" => $data['descripcion'],
-                "FechaFinal" => $data['fecha'],
-                "Curso" => $data['curso']
-            );
-        }
+        $array = array(
+            "Titulo" => $data['titulo'],
+            "Descripcion" => $data['descripcion'],
+            "FechaFinal" => $data['fecha'],
+            "Archivo" => $archivo,
+            "Curso" => $data['curso']
+        );
 
         $this->db->insert('tareas', $array);
     }
 
     // Obtener la lista de tareas insertadas en base de datos
-    public function obtenerTarea($curso)
+    public function obtenerTareas($curso)
     {
         $this->db->select('*');
         $this->db->from('tareas');
         $this->db->where('Curso', $curso);
         $this->db->order_by('FechaFinal', 'ASC');
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return NULL;
+        }
+    }
+
+    /*
+        Datos de Mensajes
+    */
+
+    public function insertarMensaje($data, $id, $nombreFrom)
+    {
+        $array = array(
+            "Texto" => $data['texto'],
+            "Nombre_From" => $nombreFrom,
+            "Id_From" => $id,
+            "Id_To" => $data['id_to']
+        );
+
+        $this->db->insert('mensajes', $array);
+    }
+
+    public function obtenerMensajes($id)
+    {
+        $queryParammeter = 
+        "SELECT mensajes.* FROM mensajes 
+        JOIN (SELECT max(Fecha) maxtime,Id_From FROM mensajes WHERE Id_To = ? group by Id_From) latest
+        ON mensajes.Fecha = latest.maxtime AND mensajes.Id_From = latest.Id_From";
+
+        $query = $this->db->query($queryParammeter, $id);
+
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return NULL;
+        }
+    }
+
+    public function obtenerMensajesChat($idTo, $idMensajes)
+    {
+        $this->db->select('*');
+        $this->db->from('mensajes');
+        $this->db->where('Id_To', $idMensajes);
+        $this->db->where('Id_From', $idTo);
+        $this->db->or_where('Id_From', $idMensajes);
+        $this->db->where('Id_To', $idTo);
+        $this->db->order_by('Fecha', 'ASC');
 
         $query = $this->db->get();
 
