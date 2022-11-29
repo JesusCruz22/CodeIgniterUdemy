@@ -59,7 +59,6 @@
         time: 3000 // hang on the screen for...
     });
 </script>
--->
 
 <script type="application/javascript">
     $(document).ready(function() {
