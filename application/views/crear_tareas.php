@@ -1,8 +1,8 @@
 <section id="main-content">
     <section class="wrapper">
         <!-- CREAR TAREA FORM ELELEMNTS -->
-        <div class="row mt">
-            <div class="col-md-8 col-md-offset-2">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
                 <div class="form-panel">
                     <h4 class="mb"><i class="fa fa-angle-right"></i> CREAR TAREA</h4>
                     <form class="form-horizontal style-form" action="" method="post" enctype="multipart/form-data">
@@ -15,7 +15,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Descripción</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="descripcion" required>
+                                <textarea type="text" class="form-control" name="descripcion" style="resize: vertical;" required></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -43,7 +43,7 @@
                                 </select>
                             </div>
                         </div>
-                        <input class="btn btn-primary" type="submit" value="Enviar">
+                        <input class="btn btn-theme" type="submit" value="Enviar">
                     </form>
                 </div>
             </div><!-- col-lg-12-->
