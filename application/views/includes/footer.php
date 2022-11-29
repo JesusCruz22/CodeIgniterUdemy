@@ -28,13 +28,18 @@
 <script src="<?= base_url() ?>assets/js/sparkline-chart.js"></script>
 <script src="<?= base_url() ?>assets/js/zabuto_calendar.js"></script>
 
+<script>
+    const
+</script>
+
+<!--
 <script type="text/javascript">
     $(document).ready(function() {
         var unique_id = $.gritter.add({
             // (string | mandatory) the heading of the notification
             title: 'Bienvenido!',
             // (string | mandatory) the text inside the notification
-            text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo.',
+            text: 'Puedes esconder el menu lateral haciendo clic en el boton junto al logo. Pasa el mouse por encima para cerrar este dialogo.',
             // (string | optional) the image to display on the left
             image: '<?= base_url() ?>assets/img/ui-sam.jpg',
             // (bool | optional) if you want it to fade out on its own or just sit there
@@ -50,10 +55,11 @@
     $.extend($.gritter.options, {
         position: 'bottom-right', // defaults to 'top-right' but can be 'bottom-left', 'bottom-right', 'top-left', 'top-right' (added in 1.7.1)
         fade_in_speed: 'medium', // how fast notifications fade in (string or int)
-        fade_out_speed: 2000, // how fast the notices fade out
-        time: 6000 // hang on the screen for...
+        fade_out_speed: 1000, // how fast the notices fade out
+        time: 3000 // hang on the screen for...
     });
 </script>
+-->
 
 <script type="application/javascript">
     $(document).ready(function() {
@@ -99,6 +105,30 @@
     }
 </script>
 
+<script>
+    const messagesContainer = document.getElementById("messages-container");
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+    function setIdTo(id) {
+        const elementoNombre = document.getElementById('nombre-' + id);
+        const textoElementoNombre = elementoNombre.innerHTML;
+        const arrayElementoNombre = textoElementoNombre.split('<br>');
+        const nombreCompleto = arrayElementoNombre[0];
+
+        $.post("<?= base_url() ?>Dashboard/mensajes", {
+            idChat: id,
+            nombreChat: nombreCompleto
+        }).done(function(data) {
+            location.href = "<?= base_url() ?>Dashboard/mensajes";
+        });
+
+        /*
+        const idToInput = document.getElementById("id-to-input");
+        idToInput.setAttribute('value', id);
+        console.log(idToInput.getAttribute('value'));
+        */
+    }
+</script>
 
 </body>
 
