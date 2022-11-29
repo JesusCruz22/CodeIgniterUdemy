@@ -87,7 +87,6 @@ class Site_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('alumnos');
-        $this->db->where('Curso', $curso);
         $this->db->where('Is_Deleted', 0);
 
         $query = $this->db->get();
