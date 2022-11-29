@@ -6,12 +6,12 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-		$this->loadView("home", $this->obtenerTareas());
+		$this->loadView("home", null, $this->obtenerTareas());
 	}
 
 	// Cargar vista de dashboard para mostrar el inicio de lapagina 
 	// o redireccionar al usuario a la vista para iniciar sesión
-	public function loadView($view, $data = null)
+	public function loadView($view, $data = null, $dataHeader = null)
 	{
 
 		if ($_SESSION['Username']) {
@@ -20,7 +20,7 @@ class Dashboard extends CI_Controller
 				redirect(base_url() . "Dashboard", "location");
 			}
 
-			$this->load->view('includes/header', $data);
+			$this->load->view('includes/header', $dataHeader);
 			$this->load->view('includes/sidebar');
 			$this->load->view($view, $data);
 			$this->load->view('includes/footer');
@@ -75,7 +75,7 @@ class Dashboard extends CI_Controller
 	{
 		if ($_SESSION['tipo'] == 'Profesor') {
 			$data['alumnos'] = $this->Site_model->obtenerAlumnos($_SESSION['Curso']);
-			$this->loadView('gestion_alumnos', $data);
+			$this->loadView('gestion_alumnos', $data, $this->obtenerTareas());
 		} else {
 			redirect(base_url() . "Dashboard", "location");
 		}
@@ -94,14 +94,14 @@ class Dashboard extends CI_Controller
 	public function crearTareas()
 	{
 		$this->insertarTarea();
-		$this->loadView('crear_tareas', $this->obtenerTareas());
+		$this->loadView('crear_tareas', null, $this->obtenerTareas());
 	}
 
 	public function misTareas()
 	{
 		if ($_SESSION['Id']) {
 			$data = $this->obtenerTareas();
-			$this->loadView('mis_tareas', $data);
+			$this->loadView('mis_tareas', $data, $this->obtenerTareas());
 		} else {
 			redirect(base_url() . "Dashboard", "location");
 		}
