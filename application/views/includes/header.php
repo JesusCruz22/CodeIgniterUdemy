@@ -62,34 +62,58 @@
                                 <li class="dropdown">
                                     <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                                         <i class="fa fa-book"></i>
-                                        <span class="badge bg-theme"><?= count($tareas) ?></span>
+                                        <?php
+                                        if ($tareas) {
+                                        ?>
+                                            <span class="badge bg-theme"><?= count($tareas) ?></span>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <span class="badge bg-theme">0</span>
+                                        <?php
+                                        }
+                                        ?>
                                     </a>
                                     <ul class="dropdown-menu extended tasks-bar">
                                         <div class="notify-arrow notify-arrow-green"></div>
                                         <li>
-                                            <p class="green">Tienes <?= count($tareas) ?> tareas pendientes</p>
+                                            <?php
+                                            if ($tareas) {
+                                            ?>
+                                                <p class="green">Tienes <?= count($tareas) ?> tareas pendientes</p>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <p class="green">No tienes tareas pendientes</p>
+                                            <?php
+                                            }
+                                            ?>
                                         </li>
                                         <?php
-                                        $count = 0;
-                                        foreach ($tareas as $tarea) {
-                                            $count++;
-                                            if ($count > 5) break;
+                                        if ($tareas) {
+                                            $count = 0;
+                                            foreach ($tareas as $tarea) {
+                                                $count++;
+                                                if ($count > 5) break;
                                         ?>
 
-                                            <li>
-                                                <a href="<?= base_url() ?>Dashboard/misTareas">
-                                                    <div class="task-info">
-                                                        <div class="desc"><strong><?= $tarea->Titulo ?></strong></div>
-                                                        <div class="percent"><small>Fecha Final: <?= $tarea->FechaFinal ?></small></div>
-                                                    </div>
-                                                </a>
+                                                <li>
+                                                    <a href="<?= base_url() ?>Dashboard/misTareas">
+                                                        <div class="task-info">
+                                                            <div class="desc"><strong><?= $tarea->Titulo ?></strong></div>
+                                                            <div class="percent"><small>Fecha Final: <?= $tarea->FechaFinal ?></small></div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            <?php
+                                            }
+                                            ?>
+                                            <li class="external">
+                                                <a href="<?= base_url() ?>Dashboard/misTareas">Todas mis tareas</a>
                                             </li>
                                         <?php
                                         }
                                         ?>
-                                        <li class="external">
-                                            <a href="<?= base_url() ?>Dashboard/misTareas">Todas mis tareas</a>
-                                        </li>
                                     </ul>
                                 </li>
                                 <!-- tasks end -->
@@ -106,7 +130,7 @@
                                         <?php
                                         } else {
                                         ?>
-                                            <span class="badge bg-theme"><?= 0 ?></span>
+                                            <span class="badge bg-theme">0</span>
                                         <?php
                                         }
                                         ?>
